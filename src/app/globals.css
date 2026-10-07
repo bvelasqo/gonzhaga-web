@@ -1,26 +1,291 @@
 @import "tailwindcss";
 
+/*
+  Gonzhaga — Dirección visual "Ink + ámbar"
+  Tinta grafito + crema + acento ámbar cálido. Cálido, cercano, técnico.
+  Todos los pares texto/fondo cumplen contraste AA (>= 4.5:1 texto normal).
+*/
+
+/* ---- Modo claro (por defecto) ---- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Superficies */
+  --background: #faf8f5; /* crema */
+  --foreground: #1c1917; /* tinta grafito */
+  --card: #ffffff;
+  --card-foreground: #1c1917;
+  --popover: #ffffff;
+  --popover-foreground: #1c1917;
+
+  /* Marca */
+  --primary: #b45309; /* ámbar */
+  --primary-foreground: #ffffff;
+  --accent: #4d7c0f; /* verde oliva de apoyo */
+  --accent-foreground: #ffffff;
+
+  /* Neutros */
+  --muted: #f0ebe4;
+  --muted-foreground: #5c5346; /* AA sobre crema */
+  --secondary: #f0ebe4;
+  --secondary-foreground: #1c1917;
+  --border: #e7dfd4;
+  --input: #e7dfd4;
+  --ring: #b45309;
+
+  /* Estados */
+  --destructive: #b91c1c;
+  --destructive-foreground: #ffffff;
+  --success: #15803d;
+  --success-foreground: #ffffff;
+  --warning: #a16207;
+  --warning-foreground: #ffffff;
+
+  /* Radios */
+  --radius-sm: 0.5rem; /* 8px */
+  --radius-md: 0.75rem; /* 12px */
+  --radius-lg: 1rem; /* 16px */
+  --radius-xl: 1.25rem; /* 20px */
+
+  color-scheme: light;
 }
 
+/* ---- Modo oscuro vía preferencia del sistema ---- */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --background: #17150f; /* casi negro cálido */
+    --foreground: #f5f1ea; /* blanco hueso */
+    --card: #211e16;
+    --card-foreground: #f5f1ea;
+    --popover: #211e16;
+    --popover-foreground: #f5f1ea;
+
+    --primary: #f59e0b; /* ámbar más luminoso para contraste */
+    --primary-foreground: #1c1917;
+    --accent: #84cc16;
+    --accent-foreground: #17150f;
+
+    --muted: #2a261d;
+    --muted-foreground: #b6aa97; /* AA sobre fondo oscuro */
+    --secondary: #2a261d;
+    --secondary-foreground: #f5f1ea;
+    --border: #38342a;
+    --input: #38342a;
+    --ring: #f59e0b;
+
+    --destructive: #ef4444;
+    --destructive-foreground: #17150f;
+    --success: #4ade80;
+    --success-foreground: #17150f;
+    --warning: #fbbf24;
+    --warning-foreground: #17150f;
+
+    color-scheme: dark;
+  }
+}
+
+/* ---- Modo oscuro forzado (toggle) ---- */
+:root.dark {
+  --background: #17150f;
+  --foreground: #f5f1ea;
+  --card: #211e16;
+  --card-foreground: #f5f1ea;
+  --popover: #211e16;
+  --popover-foreground: #f5f1ea;
+
+  --primary: #f59e0b;
+  --primary-foreground: #1c1917;
+  --accent: #84cc16;
+  --accent-foreground: #17150f;
+
+  --muted: #2a261d;
+  --muted-foreground: #b6aa97;
+  --secondary: #2a261d;
+  --secondary-foreground: #f5f1ea;
+  --border: #38342a;
+  --input: #38342a;
+  --ring: #f59e0b;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #17150f;
+  --success: #4ade80;
+  --success-foreground: #17150f;
+  --warning: #fbbf24;
+  --warning-foreground: #17150f;
+
+  color-scheme: dark;
+}
+
+/* ---- Registro de tokens en Tailwind v4 ---- */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+
+  /* Tipografía (variables inyectadas por next/font) */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-inter), ui-sans-serif, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "JetBrains Mono", monospace;
+
+  /* Radios */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  /* Sombras tibias (tono tinta cálido, no negro puro) */
+  --shadow-soft: 0 1px 2px rgba(28, 25, 23, 0.06), 0 2px 8px rgba(28, 25, 23, 0.06);
+  --shadow-card: 0 1px 3px rgba(28, 25, 23, 0.08), 0 8px 24px -6px rgba(28, 25, 23, 0.1);
+  --shadow-lift: 0 12px 32px -8px rgba(28, 25, 23, 0.18);
+
+  /* Espaciado de secciones */
+  --spacing-section: 5rem; /* 80px */
+  --spacing-section-lg: 7rem; /* 112px */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ---- Base ---- */
+* {
+  border-color: var(--border);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Textura sutil de "papel": grano muy tenue sobre el fondo */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.4;
+  background-image: radial-gradient(
+    rgba(28, 25, 23, 0.025) 1px,
+    transparent 1px
+  );
+  background-size: 4px 4px;
+}
+
+:root.dark body::before {
+  background-image: radial-gradient(
+    rgba(245, 241, 234, 0.02) 1px,
+    transparent 1px
+  );
+}
+
+/* Foco visible y consistente para accesibilidad */
+*:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Desplazamiento suave a anclas, con margen para el header fijo */
+html {
+  scroll-behavior: smooth;
+}
+[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* Única secuencia orquestada de entrada del hero */
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-reveal > * {
+  opacity: 0;
+  animation: hero-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.hero-reveal > *:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.hero-reveal > *:nth-child(2) {
+  animation-delay: 0.18s;
+}
+.hero-reveal > *:nth-child(3) {
+  animation-delay: 0.31s;
+}
+.hero-reveal > *:nth-child(4) {
+  animation-delay: 0.44s;
+}
+
+/* Lightbox (ampliar imagen) */
+@keyframes lightbox-scrim-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes lightbox-figure-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.lightbox-scrim {
+  animation: lightbox-scrim-in 0.2s ease-out forwards;
+}
+.lightbox-figure {
+  animation: lightbox-figure-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .hero-reveal > * {
+    opacity: 1;
+    animation: none;
+  }
+  .lightbox-scrim,
+  .lightbox-figure {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

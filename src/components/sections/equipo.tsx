@@ -7,7 +7,7 @@ import { team } from "@/content/team";
 import { sectionsCopy } from "@/content/sections";
 import type { TeamMember } from "@/content/types";
 
-/** Equipo: tarjetas de los fundadores con fortalezas y certificaciones. */
+/** Equipo: tarjetas de los fundadores con fortalezas, tecnologías y credenciales. */
 export function Equipo() {
   const copy = sectionsCopy.team;
   return (
@@ -59,6 +59,12 @@ function MemberCard({ member }: { member: TeamMember }) {
         </div>
       </div>
 
+      {member.summary && (
+        <p className="mt-4 text-muted-foreground leading-relaxed">
+          {member.summary}
+        </p>
+      )}
+
       <ul className="mt-6 space-y-2.5">
         {member.strengths.map((strength) => (
           <li key={strength} className="flex items-start gap-2.5 leading-relaxed">
@@ -71,25 +77,38 @@ function MemberCard({ member }: { member: TeamMember }) {
         ))}
       </ul>
 
-      {member.certifications && member.certifications.length > 0 && (
+      {member.badges && member.badges.length > 0 && (
+        <div className="mt-6 flex flex-wrap gap-2">
+          {member.badges.map((badge) => (
+            <Badge key={badge} mono variant="muted">
+              {badge}
+            </Badge>
+          ))}
+        </div>
+      )}
+
+      {member.credentials && member.credentials.items.length > 0 && (
         <div className="mt-6 border-t border-border pt-5">
-          <p className="text-sm text-muted-foreground">Certificaciones en la nube</p>
+          <p className="text-sm text-muted-foreground">
+            {member.credentials.label}
+          </p>
           <div className="mt-3 flex flex-wrap gap-2">
-            {member.certifications.map((cert) => (
-              <Badge key={cert} variant="accent">
-                {cert}
+            {member.credentials.items.map((item) => (
+              <Badge key={item} variant="accent">
+                {item}
               </Badge>
             ))}
           </div>
         </div>
       )}
 
-      <div className="mt-6 pt-2">
+      <div className="mt-auto pt-6">
         {member.linkedin ? (
           <a
             href={member.linkedin}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={`LinkedIn de ${member.name}`}
             className="inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-primary"
           >
             <LinkedInIcon /> Ver LinkedIn

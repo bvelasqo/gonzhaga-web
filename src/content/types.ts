@@ -32,13 +32,24 @@ export type ProcessStep = {
   description: string;
 };
 
+/** Bloque con etiqueta para la tarjeta del equipo (certificaciones, formación, etc.). */
+export type Credentials = {
+  label: string;
+  items: string[];
+};
+
 export type TeamMember = {
   name: string;
   role: string;
   /** Ruta a la foto, o null mientras no exista. */
   photo: string | null;
+  /** Resumen de 1–2 líneas. Opcional. */
+  summary?: string;
   strengths: string[];
-  certifications?: string[];
+  /** Tecnologías destacadas como badges. Opcional. */
+  badges?: string[];
+  /** Bloque con etiqueta: certificaciones, formación, etc. Opcional. */
+  credentials?: Credentials;
   /** URL de LinkedIn, o null mientras no exista. */
   linkedin: string | null;
 };

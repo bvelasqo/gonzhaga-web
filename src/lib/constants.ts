@@ -19,7 +19,7 @@ function formatWhatsapp(num: string): string {
 export const CONTACT = {
   whatsappNumber: WHATSAPP_NUMBER,
   whatsappDisplay: formatWhatsapp(WHATSAPP_NUMBER),
-  email: "brandon.velasquez.osorio@gmail.com",
+  email: "gonzhagasas@gmail.com",
 } as const;
 
 export const LINKS = {

@@ -4,7 +4,7 @@ import type { TeamMember } from "./types";
 export const team: TeamMember[] = [
   {
     name: "Brandon Velásquez",
-    role: "Cofundador · Ingeniero de Sistemas Full Stack",
+    role: "Fundador · Ingeniero de Sistemas Full Stack",
     photo: "/team/foto_brandon.jpeg",
     summary:
       "5+ años diseñando y construyendo sistemas backend escalables, microservicios y plataformas empresariales para empresas de Colombia y SaaS internacionales.",
@@ -15,10 +15,10 @@ export const team: TeamMember[] = [
     ],
     badges: [
       "Node.js",
+      "Python",
       "TypeScript",
       "NestJS",
       "Next.js",
-      "GraphQL",
       "PostgreSQL",
       "AWS",
       "Linux",
@@ -31,12 +31,23 @@ export const team: TeamMember[] = [
   },
   {
     name: "Camilo Jiménez Jaramillo",
-    role: "Desarrollador full stack · IA y nube",
+    role: "Cofundador. Desarrollador full stack · IA y nube",
     photo: "/team/foto_camilo.jpg",
+    summary: "Desarrollador backend con experiencia en Node.js y Python, especializado en arquitecturas backend escalables, autenticación, integraciones de pago y desarrollo de IA.",
     strengths: [
       "Asistentes con IA (LangChain / LangGraph) y FastAPI",
       "Infraestructura en AWS, Azure y Huawei Cloud",
       "Automatización con Terraform y Kubernetes",
+    ],
+    badges: [
+      "Node.js",
+      "Python",
+      "TypeScript",
+      "FastAPI",
+      "PostgreSQL",
+      "AWS",
+      "Azure",
+      "Huawei Cloud"
     ],
     credentials: {
       label: "Certificaciones en la nube",

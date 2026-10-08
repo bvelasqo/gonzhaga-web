@@ -3,7 +3,7 @@ import type { TeamMember } from "./types";
 /** Equipo fundador. */
 export const team: TeamMember[] = [
   {
-    name: "Brandon Velásquez",
+    name: "Brandon Velásquez Osorio",
     role: "Fundador · Ingeniero de Sistemas Full Stack",
     photo: "/team/foto_brandon.jpeg",
     summary:
